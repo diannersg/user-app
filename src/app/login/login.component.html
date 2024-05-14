@@ -1,0 +1,37 @@
+<div class="flex flex-col h-full w-full justify-center items-center bg-gray-900 p-10">
+  <form [formGroup]="formGroup" class="card flex flex-col w-full md:w-3/5 lg:w-2/3 xl:w-1/3 p-10 gap-5">
+    <span class="text-2xl">Sign in to your account</span>
+
+    <div class="flex flex-col">
+      <mat-label class="mb-2">Username</mat-label>
+      <mat-form-field subscriptSizing="dynamic">
+        <input type="text" matInput [formControlName]="'username'">
+        <mat-error class="!text-amber-700">Username is required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="flex flex-col">
+      <mat-label class="mb-2">Password</mat-label>
+      <mat-form-field subscriptSizing="dynamic">
+        <input matInput
+               [type]="passwordVisible ? 'text' : 'password'"
+               [formControlName]="'password'">
+        <mat-icon matSuffix
+                  class="cursor-pointer"
+                  (click)="passwordVisible = !passwordVisible"
+        >{{passwordVisible ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <mat-error class="!text-amber-700">Password is required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-error *ngIf="error" class="!text-amber-700">User not valid</mat-error>
+
+    <button mat-flat-button class="mt-5"
+            color="primary"
+            [disabled]="formGroup.invalid"
+            (click)="login()"
+    >Login</button>
+
+  </form>
+
+</div>
