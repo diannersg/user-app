@@ -13,6 +13,7 @@ import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {MatButton} from "@angular/material/button";
 import {Select, Store} from "@ngxs/store";
 import {ListUser, PaginateUser, SearchUser, UserState} from "../store/users.state";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-user-list',
@@ -27,7 +28,8 @@ import {ListUser, PaginateUser, SearchUser, UserState} from "../store/users.stat
     ReactiveFormsModule,
     AsyncPipe,
     MatPaginator,
-    MatButton
+    MatButton,
+    MatProgressSpinner
   ],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss'
@@ -40,6 +42,7 @@ export class UserListComponent implements OnInit {
 
   filteredUsers$!: Observable<User[]>;
   searchControl = new FormControl<string>('');
+  loading = false;
 
   dialogRef: MatDialogRef<HTMLElement> | undefined;
 
@@ -63,11 +66,13 @@ export class UserListComponent implements OnInit {
   }
 
   getUsers() {
+    this.loading = true;
     this.userService.getUsers()
       .subscribe({
         next: data => {
           this.store.dispatch(new ListUser(data));
           this.filterUsers();
+          this.loading = false;
         },
         error: () => this.openErrorDialog()
       })
