@@ -6,10 +6,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
@@ -18,10 +14,30 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Features
+1. Fetch and display users:
+The application fetches and displays a list of users from https://jsonplaceholder.typicode.com/users.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+2. User details:
+Clicking a user displays detailed information on a separate page.
 
-## Further help
+3. Error handling:
+Handles errors gracefully and allows retrying the request.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+4. Responsive design:
+The application is responsive and works well on both desktop and mobile devices.
+
+5. Search functionality:
+Users can search for specific users by name.
+
+6. Pagination:
+The user list supports pagination to display a limited number of users per page.
+
+7. Authentication guard:
+Protects routes with an authentication guard.
+
+8. State management:
+Uses NGXS for state management.
+
+9. Unit testing:
+Includes unit tests for user.service and user-list.component.
